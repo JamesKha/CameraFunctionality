@@ -105,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     private String saveLocationAlternateTest(Bitmap image) {
         /*This function saves a picture with a name associated with the system's time at that moment (under the variable name timeStamp)
         and will write to a file named com.example.camerafunctionality */

@@ -27,12 +27,39 @@
         android:layout_marginTop="55dp"
         />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/imageView"
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play Audio"
+        android:id="@+id/bt_play"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="55dp"
         />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop Audio"
+        android:id="@+id/bt_stop"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="55dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Record Audio"
+        android:id="@+id/bt_record"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="55dp"
+        />
+
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="380dp"
+        android:layout_height="451dp"
+        android:layout_weight="1" />
 
 
 
