@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -57,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         btPlay = findViewById(R.id.bt_play);
         btStop = findViewById(R.id.bt_stop);
         btRecord = findViewById(R.id.bt_record);
+        String path;
 
 
         /*This if statement will associate the camera functionality with the request code, 100,  and the intent (Camera permissions) */
@@ -73,16 +76,18 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 100);
+
             }
         });
 
         btSave.setOnClickListener(new View.OnClickListener() {
-            private View view;
+
 
             @Override
             public void onClick(View view) {
 
-                saveLocationAlternateTest(imageView.getDrawingCache());
+                Bitmap bitmap = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+                saveLocationAlternateTest(bitmap);
             }
 
 
@@ -93,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                getImage();
+                getImage("/data/data/com.example.camerafunctionarlity/app_imageDir/20201127_122454.jpg");
             }
 
 
@@ -126,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         /*This function saves a picture with a name associated with the system's time at that moment (under the variable name timeStamp)
         and will write to a file named com.example.camerafunctionality */
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = timeStamp + ".png";
+        String imageFileName = timeStamp + ".jpg";
         ContextWrapper cw = new ContextWrapper((getApplicationContext()));
         File storageLocation = cw.getDir("imageDir", MODE_PRIVATE);
         File path = new File(storageLocation, imageFileName);
@@ -134,7 +139,8 @@ public class MainActivity extends AppCompatActivity {
         FileOutputStream outWrite = null;
         try {
             outWrite = new FileOutputStream(path);
-            image.compress(Bitmap.CompressFormat.PNG, 100, outWrite);
+            image.compress(Bitmap.CompressFormat.PNG, 90, outWrite);
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -146,13 +152,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return storageLocation.getAbsolutePath();
     }
-    private void getImage(){
-            ImageView imageView = (ImageView) findViewById(R.id.imageView);
-            ContextWrapper cw = new ContextWrapper((getApplicationContext()));
-            File storageLocation = cw.getDir("imageDir", Context.MODE_PRIVATE);
-            String filename = new File (storageLocation, "voorkant.jpg").getAbsolutePath();
-            Bitmap bitmap = BitmapFactory.decodeFile(filename);
-            imageView.setImageBitmap(bitmap);
+
+    public void getImage(String filePath){
+        Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+        imageView.setImageBitmap(bitmap);
     }
 
     public void audioPlayer(String path, String fileName){
@@ -200,9 +203,6 @@ public class MainActivity extends AppCompatActivity {
 
         mediaRecorder.start();
     }
-
-
-
 
 
 
