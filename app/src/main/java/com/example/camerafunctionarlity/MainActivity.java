@@ -1,10 +1,13 @@
 package com.example.camerafunctionarlity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btOpen;
     Button btSave;
+    Button btOpenImage;
     Button btPlay;
     Button btStop;
     Button btRecord;
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         btOpen = findViewById(R.id.bt_open);
         btSave = findViewById(R.id.bt_save);
+        btOpenImage = findViewById(R.id.bt_openImage);
         btPlay = findViewById(R.id.bt_play);
         btStop = findViewById(R.id.bt_stop);
         btRecord = findViewById(R.id.bt_record);
@@ -78,6 +83,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 saveLocationAlternateTest(imageView.getDrawingCache());
+            }
+
+
+        });
+        btOpenImage.setOnClickListener(new View.OnClickListener() {
+            private View view;
+
+            @Override
+            public void onClick(View view) {
+
+                getImage();
             }
 
 
@@ -130,6 +146,15 @@ public class MainActivity extends AppCompatActivity {
         }
         return storageLocation.getAbsolutePath();
     }
+    private void getImage(){
+            ImageView imageView = (ImageView) findViewById(R.id.imageView);
+            ContextWrapper cw = new ContextWrapper((getApplicationContext()));
+            File storageLocation = cw.getDir("imageDir", Context.MODE_PRIVATE);
+            String filename = new File (storageLocation, "voorkant.jpg").getAbsolutePath();
+            Bitmap bitmap = BitmapFactory.decodeFile(filename);
+            imageView.setImageBitmap(bitmap);
+    }
+
     public void audioPlayer(String path, String fileName){
         {
             try {

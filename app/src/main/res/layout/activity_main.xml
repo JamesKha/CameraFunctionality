@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Take a Picture"
         android:id="@+id/bt_open"
-       android:layout_gravity="center_horizontal"
+       android:layout_gravity="left"
         android:layout_marginTop="55dp"
         />
     <Button
@@ -23,16 +23,32 @@
         android:layout_height="wrap_content"
         android:text="Save Picture"
         android:id="@+id/bt_save"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="left"
         android:layout_marginTop="55dp"
         />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Open Image"
+        android:id="@+id/bt_openImage"
+        android:layout_gravity="left"
+        android:layout_marginTop="55dp"
+        />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="159dp"
+        android:layout_height="451dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Play Audio"
         android:id="@+id/bt_play"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="left"
         android:layout_marginTop="55dp"
         />
     <Button
@@ -40,27 +56,17 @@
         android:layout_height="wrap_content"
         android:text="Stop Audio"
         android:id="@+id/bt_stop"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="left"
         android:layout_marginTop="55dp"
         />
 
     <Button
+        android:id="@+id/bt_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Record Audio"
-        android:id="@+id/bt_record"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="left"
         android:layout_marginTop="55dp"
-        />
-
-
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="380dp"
-        android:layout_height="451dp"
-        android:layout_weight="1" />
-
+        android:text="Record Audio" />
 
 
 </LinearLayout>
